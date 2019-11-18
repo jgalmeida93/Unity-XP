@@ -7,6 +7,7 @@
 ## Extras
 
 * [Android Studio](android-studio.md)
+* [AV Studio](av-studio.md)
 * [Blender](blender.md)
 * [DBeaver](dbeaver.md)
 * [Drawers](drawers.md)
@@ -14,6 +15,5 @@
 * [Hardcode-tray](hardcode-tray.md)
 * [Insomnia](insomnia.md)
 * [PJe Office](pjeoffice.md)
-* [Studio](studio.md)
 * [Ubuntu Make](ubuntu-make.md)
 * [WINE Staging](wine-staging.md)
