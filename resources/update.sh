@@ -234,3 +234,25 @@ if promptyn "Você deseja instalar o suporte à emojis? (s/n)"; then
 else
   clear
 fi
+
+# Placidity Plymouth
+promptyn () {
+    while true; do
+        read -p "$1 " sn
+        case $sn in
+            [Ss]* ) return 0;;
+            [Nn]* ) return 1;;
+            * ) echo "Você deseja mudar o tema do Plymouth para o Placidity? (s/n)";;
+        esac
+    done
+}
+
+if promptyn "Você deseja mudar o tema do Plymouth para o Placidity? (s/n)"; then
+  wget -c https://github.com/rauldipeas/Unity-XP/raw/master/resources/placidity.tar.gz
+  sudo tar -vzxf placidity.tar.gz -C /usr/share/plymouth/themes/;rm -rfv placidity*
+  sudo update-alternatives --install /usr/share/plymouth/themes/default.plymouth default.plymouth /usr/share/plymouth/placidity/placidity.plymouth 100
+  sudo update-alternatives --set default.plymouth /usr/share/plymouth/themes/placidity/placidity.plymouth
+  sudo update-initramfs -u -k all
+else
+  clear
+fi
