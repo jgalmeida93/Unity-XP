@@ -119,8 +119,8 @@ sudo chroot $HOME/Unity-XP/chroot apt install -y \
     network-manager-gnome \
     obs-studio \
     olive-editor \
+    plymouth-label \
     papirus-icon-theme \
-    plymouth-theme-ubuntu-logo \
     pulseaudio-module-bluetooth \
     python-tk \
     rawtherapee \
@@ -135,7 +135,7 @@ sudo chroot $HOME/Unity-XP/chroot apt install -y \
     vino \
     xserver-xorg-input-synaptics \
     zram-config
-    
+
 # Programas que não estão nos repositórios do Ubuntu
 # AppImageD
 sudo chroot $HOME/Unity-XP/chroot sh -c "wget -c https://github.com/rauldipeas/Unity-XP/raw/master/resources/appimaged_1-alpha-git0f1c320.travis214_amd64.deb"
@@ -186,7 +186,7 @@ sudo chroot $HOME/Unity-XP/chroot apt install -y \
     ubiquity-casper \
     ubiquity-frontend-gtk \
     ubiquity-slideshow-ubuntu
-    
+
 # Drivers de vídeo e programas para jogos
 sudo chroot $HOME/Unity-XP/chroot apt install -y \
     lutris \
@@ -194,7 +194,7 @@ sudo chroot $HOME/Unity-XP/chroot apt install -y \
     mesa-vulkan-drivers:i386 \
     nvidia-driver-440 \
     steam-installer \
-    xboxdrv   
+    xboxdrv
 
 # Boot repair
 sudo chroot $HOME/Unity-XP/chroot apt install -y boot-repair
@@ -233,6 +233,9 @@ sudo umount $HOME/Unity-XP/chroot/dev
 sudo umount $HOME/Unity-XP/chroot/run
 
 # Configuração do GRUB e Plymouth
+wget -c https://github.com/rauldipeas/Unity-XP/raw/master/resources/placidity.tar.gz
+sudo tar -vzxf placidity.tar.gz -C $HOME/Unity-XP/chroot/usr/share/plymouth/themes/
+sudo chroot $HOME/Unity-XP/chroot sh -c "update-alternatives --install /usr/share/plymouth/themes/default.plymouth default.plymouth /usr/share/plymouth/placidity/placidity.plymouth 100"
 sudo sed -i 's/quiet splash/quiet splash loglevel=0 logo.nologo vt.global_cursor_default=0 mitigations=off/g' $HOME/Unity-XP/chroot/etc/default/grub
 echo "RESUME=none" | sudo tee $HOME/Unity-XP/chroot/etc/initramfs-tools/conf.d/resume
 echo "FRAMEBUFFER=y" | sudo tee $HOME/Unity-XP/chroot/etc/initramfs-tools/conf.d/splash
@@ -413,7 +416,7 @@ sudo xorriso \
       "." \
       /boot/grub/bios.img=isolinux/bios.img \
       /EFI/efiboot.img=isolinux/efiboot.img
-      
+
 # Geração do MD5 externo da imagem de instalação.
 md5sum ../unity-xp-19.10-amd64.iso > ../unity-xp-19.10-amd64.md5
 
