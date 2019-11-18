@@ -8,6 +8,7 @@
 
 * [Android Studio](android-studio.md)
 * [AV Studio](av-studio.md)
+* [Bash-it](blender.md)
 * [Blender](blender.md)
 * [DBeaver](dbeaver.md)
 * [Drawers](drawers.md)
