@@ -119,8 +119,8 @@ sudo chroot $HOME/Unity-XP/chroot apt install -y \
     network-manager-gnome \
     obs-studio \
     olive-editor \
-    plymouth-label \
     papirus-icon-theme \
+    plymouth-theme-ubuntu-logo \
     pulseaudio-module-bluetooth \
     python-tk \
     rawtherapee \
